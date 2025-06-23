@@ -4,37 +4,27 @@ This project implements **Cycle-Consistent Adversarial Networks (CycleGAN)** for
 - 🐴 Horse ↔ 🦓 Zebra
 - 🍎 Apple ↔ 🍊 Orange
 
-We trained and tested our model on these domains using unpaired datasets. Sample output images are included in the `outputs/` directory.
-
 ---
 
-## ✨ Sample Results
+## ✨ Sample Outputs
 
-### Horse ↔ Zebra
+### Zebra Domain Output
+![](./outputs/visuals_z/vis_n02381461_1000.png)
+![](./outputs/visuals_z/vis_n02381461_1030.png)
 
-| Input (Horse) | Translated (Zebra Style) |
-|---------------|---------------------------|
-| ![](./outputs/visuals_z/vis_n02381461_1000.png) | ![](./outputs/visuals_z/vis_n02381461_1030.png) |
-
----
-
-### Apple ↔ Orange
-
-| Input (Apple) | Translated (Orange Style) |
-|---------------|----------------------------|
-| ![](./outputs/visuals_o/vis_n07740461_10311.png) | *(Sample output shown on left)* |
+### Orange Domain Output
+![](./outputs/visuals_o/vis_n07740461_10311.png)
 
 ---
 
 ## 📁 Dataset
 
-We used the following datasets from the [CycleGAN dataset collection](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/):
+We used datasets from the [CycleGAN dataset collection](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/):
 - `horse2zebra`
 - `apple2orange`
 
-To download datasets:
+To download:
 
 ```bash
 bash ./datasets/download_cyclegan_dataset.sh horse2zebra
 bash ./datasets/download_cyclegan_dataset.sh apple2orange
-
