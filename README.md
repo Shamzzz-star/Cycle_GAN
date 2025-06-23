@@ -1,120 +1,58 @@
-# 🌀 CycleGAN for Image-to-Image Translation
+# CycleGAN for Unpaired Image Translation
 
-This project implements a CycleGAN for unpaired image-to-image translation, focusing on transforming horse images to zebra images and vice versa. It includes:
+This project implements **Cycle-Consistent Adversarial Networks (CycleGAN)** for unpaired image-to-image translation tasks. It is inspired by the original [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) implementation by Jun-Yan Zhu et al.
 
-- `cyclegancode.py`: Training script.
-- `eval.py`: Evaluation using FCN-ResNet101 for semantic confidence scoring.
-- Support for generating and saving translated images and model checkpoints.
+We applied CycleGAN to perform style translation between:
+- 🐴 Horse ↔ 🦓 Zebra
+- 🍎 Apple ↔ 🍊 Orange
 
----
-
-## 🗂️ Project Structure
-
-```
-.
-├── cyclegancode.py           # Training script for CycleGAN
-├── eval.py                   # Evaluation script using FCN-ResNet101
-├── outputs/                  # Generated images during training
-├── result/
-│   └── 100eppoch/
-│       └── geno.pth.tar      # Pretrained Generator checkpoint
-└── datasets/
-    └── apple2orange/         # Unpaired dataset
-        ├── trainA/           # Domain A images (e.g., horses)
-        ├── trainB/           # Domain B images (e.g., zebras)
-        └── testA/            # Test images from domain A
-```
+All outputs are available in the [`outputs/`](./outputs) folder.
 
 ---
 
-## 🚀 Getting Started
+## ✨ Example Results
 
-### 1. Training the Model
+### Horse ↔ Zebra
 
-To train the CycleGAN:
+<table>
+<tr>
+<td><b>Input (Horse)</b></td>
+<td><b>Fake Zebra</b></td>
+<td><b>Reconstructed Horse</b></td>
+</tr>
+<tr>
+<td><img src="./outputs/horse2zebra/input1.jpg" width="200"/></td>
+<td><img src="./outputs/horse2zebra/fake1.jpg" width="200"/></td>
+<td><img src="./outputs/horse2zebra/reconstructed1.jpg" width="200"/></td>
+</tr>
+</table>
 
+---
+
+### Apple ↔ Orange
+
+<table>
+<tr>
+<td><b>Input (Apple)</b></td>
+<td><b>Fake Orange</b></td>
+<td><b>Reconstructed Apple</b></td>
+</tr>
+<tr>
+<td><img src="./outputs/apple2orange/input1.jpg" width="200"/></td>
+<td><img src="./outputs/apple2orange/fake1.jpg" width="200"/></td>
+<td><img src="./outputs/apple2orange/reconstructed1.jpg" width="200"/></td>
+</tr>
+</table>
+
+---
+
+## 📁 Dataset
+
+We used unpaired image datasets from the [CycleGAN dataset collection](https://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/):
+- `horse2zebra`
+- `apple2orange`
+
+You can download datasets using:
 ```bash
-python cyclegancode.py
-```
-
-This script:
-- Trains Generator and Discriminator networks.
-- Saves output images to `outputs/` every 50 iterations.
-- Saves model checkpoints in `result/` every 5 epochs.
-
-> ✅ Make sure dataset paths are correct in the script.
-
----
-
-### 2. Evaluation
-
-Evaluate the quality of translated images using FCN-ResNet101:
-
-```bash
-python eval.py
-```
-
-The evaluation script:
-- Loads the pretrained generator (`geno.pth.tar`).
-- Translates `testA` images to the target domain.
-- Computes semantic segmentation confidence via FCN.
-- Prints the average semantic confidence score.
-
-> You can modify the paths to the checkpoint and test folder in the `main()` function of `eval.py`.
-
----
-
-## 🧠 Model Architecture
-
-### Generator
-- Inspired by U-Net.
-- Includes downsampling, residual blocks, and upsampling layers.
-- Performs domain A → B and domain B → A translations.
-
-### Discriminator
-- PatchGAN architecture.
-- Classifies patches as real or fake for finer-level realism.
-
----
-
-## ✅ Requirements
-
-- Python 3.8+
-- PyTorch
-- torchvision
-- albumentations
-- tqdm
-- numpy
-- Pillow
-
-Install with:
-
-```bash
-pip install -r requirements.txt
-```
-
-
-
----
-
-## 📊 Output Examples
-
-- `    visuals_z
-
-/vis_n02381461_670.png` — Fake zebras generated from horses.
-- `outputs/fake_horse_*.png` — Fake horses generated from zebras.
-- `eval.py` prints: **"Average confidence score: 0.87"** (example output).
-
----
-
-## 📎 Notes
-
-- CycleGAN uses:
-  - **Cycle Consistency Loss** (to preserve structure).
-  - **Identity Loss** (to regularize generator).
-- Trained for 120 epochs by default.
-- CUDA recommended for faster training.
-
----
-
-
+bash ./datasets/download_cyclegan_dataset.sh horse2zebra
+bash ./datasets/download_cyclegan_dataset.sh apple2orange
