@@ -99,7 +99,9 @@ pip install -r requirements.txt
 
 ## 📊 Output Examples
 
-- `outputs/fake_zebra_*.png` — Fake zebras generated from horses.
+- `    visuals_z
+
+/vis_n02381461_670.png` — Fake zebras generated from horses.
 - `outputs/fake_horse_*.png` — Fake horses generated from zebras.
 - `eval.py` prints: **"Average confidence score: 0.87"** (example output).
 
