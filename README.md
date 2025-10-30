@@ -28,3 +28,13 @@ To download:
 ```bash
 bash ./datasets/download_cyclegan_dataset.sh horse2zebra
 bash ./datasets/download_cyclegan_dataset.sh apple2orange
+```
+---
+
+## 👩‍💻 Authors
+
+**Adithya Jayasundar T S**
+ 
+**Aswin Krishna T P**
+
+**Mohammed Shammas P**
